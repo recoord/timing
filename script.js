@@ -66,9 +66,8 @@ function update()
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     ctx.fillStyle = "white";
-    ctx.fillRect(0, y, window.innerWidth, stepheight);
-    
-    ctx.fillText(msstep.toString(), 10, 90);
+    ctx.fillRect(0, y, window.innerWidth, stepheight);    
+    ctx.fillText(msstep.toString(), 100, 100);
 
     
     
