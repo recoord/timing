@@ -1,6 +1,7 @@
 var canvas;
 var ctx;
 var starttime;
+var laststep;
 
 function pad(n, l)
 {
@@ -56,8 +57,11 @@ let stepheight = 130;
 let msstep = 33;
 
 var last_ms = 0;
+
 function update()
 {
+    let n = Date.now();
+    
     let y = ((step * stepheight) % window.innerHeight); 
     //getms() * 3 % window.innerHeight
         
@@ -67,7 +71,8 @@ function update()
     
     ctx.fillStyle = "white";
     ctx.fillRect(0, y, window.innerWidth, stepheight);    
-    ctx.fillText(msstep.toString(), 10, 100);
+    let deltastep = n - laststep;
+    ctx.fillText(msstep.toString() + " : " + deltastep.toString(), 10, 100);
 
     
     
@@ -79,6 +84,7 @@ function update()
     {
         step = 0;
     }
+    laststep = n;
     setTimeout(update, msstep);
 }
 
@@ -89,6 +95,7 @@ window.onload = (event) => {
     ctx.canvas.height = window.innerHeight;
     ctx.font = "bold 80px Arial";
     starttime = Date.now();
+    laststep = starttime;
     update();
 };
 
