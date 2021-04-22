@@ -67,14 +67,14 @@ function update()
     
     ctx.fillStyle = "white";
     ctx.fillRect(0, y, window.innerWidth, stepheight);    
-    ctx.fillText(msstep.toString(), 100, 100);
+    ctx.fillText(msstep.toString(), 10, 100);
 
     
     
     ctx.fillStyle = "black";
     ctx.fillText(getTimeString(), window.innerWidth/2 - 300, y + 100);
 
-    step += 2;
+    step += 1;
     if(step * stepheight > window.innerHeight)
     {
         step = 0;
