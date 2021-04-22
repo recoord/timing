@@ -95,7 +95,7 @@ function update()
         ctx.fillStyle = "black";
     }
     
-    let blocksize = 100;
+    let blocksize = stepheight;
     let blocklevel = 0;
     let d = audio_interval - (n - last_audio);    
     
@@ -131,7 +131,7 @@ function update()
     step += 1;
     if(step * stepheight > window.innerHeight)
     {
-        step = 0;
+        step = 1;
     }
     laststep = n;
     //setTimeout(update, msstep);
