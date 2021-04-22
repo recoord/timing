@@ -53,6 +53,8 @@ function getTimeString()
 var step = 0;
 let stepheight = 130;
 
+let msstep = 33;
+
 var last_ms = 0;
 function update()
 {
@@ -66,6 +68,10 @@ function update()
     ctx.fillStyle = "white";
     ctx.fillRect(0, y, window.innerWidth, stepheight);
     
+    ctx.fillText(msstep.toString(), 10, 90);
+
+    
+    
     ctx.fillStyle = "black";
     ctx.fillText(getTimeString(), window.innerWidth/2 - 300, y + 100);
 
@@ -74,7 +80,7 @@ function update()
     {
         step = 0;
     }
-    setTimeout(update, 33);
+    setTimeout(update, msstep);
 }
 
 window.onload = (event) => {
