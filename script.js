@@ -54,7 +54,7 @@ function getTimeString()
 var step = 0;
 let stepheight = 130;
 
-let msstep = 33;
+let msstep = 1000/60;
 
 var last_ms = 0;
 
