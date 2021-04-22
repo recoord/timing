@@ -74,7 +74,7 @@ function update()
     {
         step = 0;
     }
-    setTimeout(update, 10);
+    setTimeout(update, 33);
 }
 
 window.onload = (event) => {
