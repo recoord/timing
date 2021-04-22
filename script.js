@@ -57,6 +57,9 @@ let stepheight = 130;
 let msstep = 1000/60;
 
 var last_ms = 0;
+var audio;
+var last_audio = 0;
+var audio_interval = 3000;
 
 function update()
 {
@@ -65,27 +68,74 @@ function update()
     let y = ((step * stepheight) % window.innerHeight); 
     //getms() * 3 % window.innerHeight
         
-    //Clear screen
-    ctx.fillStyle = "black";
+    let dobeep = n - last_audio > audio_interval;
+    if(dobeep)
+    {
+        last_audio = n;
+    }
+    
+    if(dobeep)
+    {
+        ctx.fillStyle = "white";
+        audio.play();
+    }
+    else
+    {    
+        ctx.fillStyle = "black";
+    }
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    ctx.fillStyle = "white";
+
+    if(!dobeep)
+    {
+        ctx.fillStyle = "white";
+    }
+    else
+    {    
+        ctx.fillStyle = "black";
+    }
+    
+    let blocksize = 100;
+    let blocklevel = 0;
+    let d = audio_interval - (n - last_audio);    
+    
+
+    ctx.fillRect(window.innerWidth/2 - d - blocksize , blocklevel, blocksize, blocksize);    
+    ctx.fillRect(window.innerWidth/2 + d,              blocklevel, blocksize, blocksize);    
+    
+    
+
+    if(dobeep)
+    {
+        ctx.fillStyle = "black";
+    }
+    else
+    {
+        ctx.fillStyle = "white";
+    }
     ctx.fillRect(0, y, window.innerWidth, stepheight);    
     let deltastep = n - laststep;
-    ctx.fillText(deltastep.toString(), 10, 100);
+    ctx.fillText(deltastep.toString(), 10, window.innerHeight);
 
     
+    if(!dobeep)
+    {
+        ctx.fillStyle = "black";
+    }
+    else
+    {
+        ctx.fillStyle = "white";
+    }
     
-    ctx.fillStyle = "black";
     ctx.fillText(getTimeString(), window.innerWidth/2 - 300, y + 100);
-
     step += 1;
     if(step * stepheight > window.innerHeight)
     {
         step = 0;
     }
     laststep = n;
-    setTimeout(update, msstep);
+    //setTimeout(update, msstep);
+    window.requestAnimationFrame(update);
 }
 
 window.onload = (event) => {
@@ -96,6 +146,9 @@ window.onload = (event) => {
     ctx.font = "bold 80px Arial";
     starttime = Date.now();
     laststep = starttime;
-    update();
+    audio = new Audio('beep.wav');
+    audio.play();
+    window.requestAnimationFrame(update);
+    //update();
 };
 
