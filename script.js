@@ -72,7 +72,7 @@ function update()
     ctx.fillStyle = "white";
     ctx.fillRect(0, y, window.innerWidth, stepheight);    
     let deltastep = n - laststep;
-    ctx.fillText(msstep.toString() + " : " + deltastep.toString(), 10, 100);
+    ctx.fillText(deltastep.toString(), 10, 100);
 
     
     
