@@ -13,7 +13,5 @@ gst-launch-1.0 -v \
 	BBB. ! libde265dec ! videoscale ! video/x-raw, width=$WIDTH, height=$HEIGHT ! videobox left=-$WIDTH ! mix. \
 	AAA. ! libde265dec ! videoscale ! video/x-raw, width=$WIDTH, height=$HEIGHT ! mix. \
 	dmx. ! $QUEUE ! aacparse ! mux.
-	
-# \	
 
 ffplay -loglevel quiet -hide_banner merged.ts
